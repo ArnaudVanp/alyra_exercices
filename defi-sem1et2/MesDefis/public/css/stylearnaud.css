@@ -1,0 +1,150 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.3em;
+}
+
+h1{
+    color: rgb(0, 0, 83);
+    word-wrap: break-word;
+}
+
+h2{
+    color: rgb(0, 0, 83);
+    word-wrap: break-word;
+}
+
+#page-content { 
+    padding: 10px;
+    text-align: center; 
+}
+
+.listeTransacs{
+    border: 1px solid  rgb(0, 0, 83);
+    border-radius: 10px;
+    box-shadow: 6px 6px 2px grey;
+    padding: 0;
+    margin: 10px;
+    padding: 20px;
+    word-wrap: break-word; 
+}
+
+p{
+    color: rgb(0, 0, 83);
+}
+
+em{
+    font-weight : bold;
+}
+
+strong{
+    font-weight : bold;
+}
+
+h3{
+    margin-left: 20px;
+}
+
+.transaction {
+    border: 4px solid rgb(0, 0, 83);
+    margin: 10px;
+    padding: 20px;
+}
+
+.hex{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 20px;
+    word-wrap: break-word;
+}
+
+.entrees {
+    border: 1px solid  rgb(0, 0, 83);
+    margin: 10px;
+    padding: 20px;
+}
+
+.sorties {
+    border: 1px solid rgb(0, 0, 83);
+    margin: 10px;
+    padding: 20px;
+}
+
+.scriptpubkey {
+    border: 1px solid rgb(0, 0, 83);
+    border-style: dotted;
+    margin: 10px;
+    padding: 20px;
+    word-wrap: break-word;
+}
+
+.scriptsig {
+    border: 1px solid  rgb(0, 0, 83);
+    border-style: dotted;
+    margin: 10px;
+    padding: 20px;
+    word-wrap: break-word;
+}
+
+
+.succes {color: rgb(3, 78, 3) !important; font-size: 0.8em;}
+.failure {color: red !important;}
+
+#search {
+    text-align: center;
+    border-color: grey;
+    width: 80%;
+    height: 70px;
+    font-size: 1.5em;
+    border-radius: 10px;
+
+}   
+
+div.bandeau {
+    background-color:rgb(0, 0, 83);
+    color: white;
+    padding: 0;
+    padding-top: 23px;
+    font-size: 1.5em;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 6px 6px 2px grey;
+    text-align: center;
+}
+
+div.bandeau a {
+color: white;
+}
+
+div.entete {
+    
+    background-color:rgb(0, 0, 83);
+    color: white;
+    padding: 35px !important;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 6px 6px 2px grey;
+    text-align: left;
+
+}
+
+div.entete p {
+    padding: 0;
+    color: white;
+    text-align: left;
+    font-size: 1em;
+    word-wrap: break-word;
+}
+
+#signature {
+    color: white;
+    padding: 0 3px 3px 0; margin: 0 5px 0 0; font-size: 0.5em; text-align: right;
+}
+
+#resultats-content {
+
+    text-align: left !important;
+}
+
+
+#blocprecedent { text-decoration: underline !important;  }
+span#blocprecedent:hover { color: red;  cursor: help; } 

@@ -1,0 +1,90 @@
+
+        <h4 class="succes">Bloc trouvé ! Pour le hash: {{hash}} contenant {{nTx}} transaction(s).</h4>
+       
+       <div id="resultats-content">
+        <h2><span>En-tête du bloc : </span></h2>
+        <div class="entete">
+
+            
+            <p><strong>Version :</strong> {{version}}</p>
+            <p><strong>Hash du bloc précédent :</strong> <span id="blocprecedent">{{previousblockhash}}</span></p>
+            <p><strong>Racine Merkle :</strong> {{merkleroot}}</p>
+            <p><strong>Date :</strong> {{time}}</p>
+            <p><strong>Bits :</strong> {{bits}}</p>
+            <p><strong>Difficulté :</strong> {{difficulty}}</p>
+            <p><strong>Nonce :</strong> {{nonce}}</p>
+            
+            <p><strong>Nombre de transactions :</strong> {{nTx}}</p>
+        </div>
+        
+        
+        <div class="listeTransacs">
+
+            <h2>Liste des transactions du bloc ({{nTx}}) :</h2>
+             {{#tx}}
+            <div class= "transaction"> 
+            <p><strong> Id  de la transaction :</strong>  {{txid}}  </p> 
+            <p><strong> Taille de cette transaction :</strong>  {{size}}  </p>
+            
+            <div class = "hex">
+                    <p><em>Hex :</em> {{hex}}</p>
+            </div>
+
+            <!-- Detail des entrées -->
+            <p> <strong>Entrée(s) :</strong> 
+                {{#vin}}
+                <div class = "entrees">
+                    
+                    <p><em>Coinbase :</em> {{coinbase}}</p> 
+                    <p><em>Sequence :</em> {{sequence}}</p>
+                    <p><em>txid :</em> {{txid}}</p>
+
+                    <p><em>vout :</em> {{vout}}</p>
+
+                    <p><em>ScriptSig :</em>
+                        {{#scriptSig}}
+                            <div class = "scriptsig">
+
+                                <p><em>asm :</em> {{asm}} </p>
+                                <p><em>hex :</em> {{hex}} </p>
+
+                            </div>
+                        {{/scriptSig}}
+                    </p>
+                </div>
+                {{/vin}}   
+            </p>
+
+            <!-- Detail des sorties -->
+            <p> <strong>Sortie(s) :</strong> 
+
+                {{#vout}}
+                <div class = "sorties">
+                                             
+                        <p><em>N° de sortie :</em> {{n}}</p>
+                        <p><em>Value :</em> {{value}}</p>
+                                                
+                        <p><em>ScriptPubKey :</em> 
+                            {{#scriptPubKey}}
+                                <div class = "scriptpubkey">
+
+                                    <p><em>asm :</em> {{asm}} </p>
+                                    <p><em>hex :</em> {{hex}} </p>
+                                    <p><em>reqSigs :</em> {{reqSigs}} </p>
+                                    <p><em>type :</em> {{type}} </p>
+                                    <p><em>addresses :</em> {{addresses}} </p>
+
+                                </div>
+                            {{/scriptPubKey}}
+                        </p>
+
+                </div>
+                {{/vout}}
+
+            </p>
+
+            </div>
+            {{/tx}}    
+        
+        </div>
+</div>
