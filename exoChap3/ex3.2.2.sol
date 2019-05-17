@@ -2,27 +2,25 @@ pragma solidity ^0.5.7;
 
 contract Cogere {
 
-    mapping (uint => Organisateur) public organisateurs;
-    uint256 public orgaCount = 0;
+    mapping (address => Organisateur) public organisateurs;
+    uint public orgaCount;
 
-    constructor() internal {
-        organisateurs[0]._addressOrganisateur = msg.sender;
-        organisateurs[0]._part = 100;
+    constructor() public {
+        organisateurs[msg.sender]._part = 100;
+        organisateurs[msg.sender].estOrga = true;
+        orgaCount ++;
     }   
     
     struct Organisateur {
-       address _addressOrganisateur;
        uint _part;
-    }
-    
-    function orgaIncrement() internal {
-        orgaCount ++;
+       bool estOrga;
     }
     
     function ajoutOrga(address _newOrga) public {
         require(estOrga(_newOrga) == false, "Cette addresse fait déjà partie des organisateurs");
-        orgaIncrement();
-        organisateurs[orgaCount] = Organisateur(_newOrga,0);
+        organisateurs[_newOrga]._part = 0;
+        organisateurs[_newOrga].estOrga = true;
+        orgaCount ++;
     }
         
      
@@ -30,39 +28,27 @@ contract Cogere {
     function transfererOrga(address _orga, uint _parts) public { 
         require(estOrga(msg.sender) == true, "Vous devez être organisateur pour transferer vos parts");
         require(estOrga(_orga) == true, "L'adresse destinataire doit faire partie des organisateurs");
+        require(organisateurs[msg.sender]._part >= _parts, "L'organisateur à l'origine du transfer n'a pas assez de part");
+        require(organisateurs[_orga]._part <= (100-_parts), "Le destinataire a trop de parts pour recevoir ce transfer");
         
-        for (uint i=0; i <= orgaCount; i++){
-            if(msg.sender == organisateurs[i]._addressOrganisateur && organisateurs[i]._part >= _parts){
-                organisateurs[i]._part -= _parts;
-            }
-        }
-        
-        for (uint i=0; i <= orgaCount; i++){
-            if(_orga == organisateurs[i]._addressOrganisateur && organisateurs[i]._part <= (100-_parts)){
-                organisateurs[i]._part += _parts;
-            }
-        }
+        organisateurs[msg.sender]._part -= _parts;
+        organisateurs[_orga]._part += _parts;
     }
 
     //qui permet de savoir si le propriétaire d’une adresse Ethereum donnée fait partie des organisateurs.
     function estOrga(address _orga) public view returns (bool){
-        for (uint i=0; i <= orgaCount; i++){
-            if(_orga == organisateurs[i]._addressOrganisateur){
-               return true;
-            }
-         } return false;
+        return organisateurs[_orga].estOrga;
     }
-    
-
+ 
 }
 
 contract CagnotteFestival is Cogere {
     
     mapping (address => bool) public festivaliers;
-    uint256 placesRestantes = 200;
+    uint placesRestantes = 200;
     uint private depensesTotales;
     mapping (uint => Sponsor) public sponsors;
-    uint256 public countSponsor =0;
+    uint public countSponsor;
     
     struct Sponsor {
         uint _sponsId;
@@ -94,14 +80,10 @@ contract CagnotteFestival is Cogere {
        depensesTotales += montant;
     }
     
-    function sponsorIncrement() internal {
-        countSponsor ++;
-    }
-    
     function sponsoriser(string memory nom) public payable {
         require(msg.value >= 30 ether, "Le montant minimum du sponsorship est de 30 Ethers");
         sponsors[countSponsor] = Sponsor(countSponsor,nom,msg.value);
-        sponsorIncrement();
+        countSponsor ++;
     }
 
     //Ajouter le contrôle du nombre de places définies initialement
@@ -109,5 +91,4 @@ contract CagnotteFestival is Cogere {
         return placesRestantes;
     }
     
-
 }
