@@ -19,7 +19,7 @@ contract Cogere {
         organisateurs[msg.sender]._part = 100;
         organisateurs[msg.sender].estOrga = true;
         orgaCount ++;
-        debutFestival = 1556966892; //1556966892;
+        debutFestival = now;
         dateLiquidation = debutFestival + 2 weeks;
     }   
     
