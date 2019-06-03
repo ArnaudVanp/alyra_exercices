@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <title>V0 DApp Place de marché décentralisée</title>
+
+    </head>
+
+
+    <body>
+
+        <div class="ui container">
+
+            <h1>V0 DApp Place de marché décentralisée</h1>
+            
+            <div>Réseau : </div><span id="network"></span>
+        
+            <p>Bienvenue sur la plateforme - illustrateurs !</p>
+
+            <hr>
+
+            <div class="ui form segment">
+            <h2>Inscription</h2>
+            
+            <p>Choisir un type d'utilisateur</p>
+            <!--Bouton Radio type utilisateur-->
+
+                    <div class="ui form">
+                          <div class="inline fields">
+                            <label for="typeUtilisateur">Quel rôle avez-vous ?</label>
+                            <div class="field">
+                              <div class="ui radio checkbox">
+                                <input type="radio" id="independant" name="typeUtilisateur" checked="" tabindex="0" class="hidden" value=1>
+                                <label for="1">Indépendant</label>
+                              </div>
+                            </div>
+                            <div class="field">
+                              <div class="ui radio checkbox">
+                                <input type="radio" id="entreprise" name="typeUtilisateur" tabindex="0" class="hidden" value=2>
+                                <label for="2">Entreprise</label>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="inline field">
+                        <div class="ui input focus">
+                            <input type="text" id="nom_inscription" placeholder="Nom...">
+                        </div>
+                        <div class="ui left pointing label">Saisir votre nom ici</div>
+                    </div>
+            </div>
+
+            <button class="ui green fluid button" onclick="inscription()">Inscription</button>
+            
+            <hr>
+
+            <div class="ui form segment">
+              <div class="field">
+                  <label>Qui êtes-vous ?</label>
+                  <div class="ui dropdown selection">
+                    <input type="hidden" name="gender">
+                    <div class="default text">Select Gender</div>
+                    <i class="dropdown icon"></i>
+                    <select class="ui dropdown" id ="myList"></select>
+                  </div>
+              </div>
+              <div class="field">
+                  <label>Description de votre demande</label>
+                  <div class="ui input fluid">
+                      <input type="text" id="demande_description" placeholder="Description de la demande...">
+                  </div>
+              </div>
+             
+              <div class="two fields">
+                <div class="field">
+                  <label>Rémunération</label>
+                  <input type="text" id="demande_remu" placeholder="Rémunération en WEI">
+                </div>
+                <div class="field">
+                  <label>Réputation minimale</label>
+                  <input type="text" id="demande_repMin" placeholder="Réputation">
+                </div>
+              </div>
+             
+            </div>    
+
+            <button class="ui fluid violet button" onclick="ajouterDemande()">Envoyer la demande</button>
+        
+            <table class="ui celled table">
+                <h2>Liste des demandes</h2>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Adresse</th>
+                            <th>Rémunération</th>
+                            <th>Durée</th>
+                            <th>Description</th>
+                            <th>Etat</th>
+                            <th>Réputation mini</th>
+                            <th>Candidats</th>
+                            <th>Postuler</th>
+                        </tr>
+                    </thead>
+                <tbody id="listeDemandes">
+                </tbody>
+            </table>
+
+            <hr>
+            <!--LISTE DES UTILISATEURS-->
+            <table class="ui celled table">
+                <h2>Liste des utilisateurs</h2>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Réputation</th>
+                            <th>Indépendant</th>
+                            <th>Entreprise</th>
+                        </tr>
+                    </thead>
+                <tbody id="myListUtil">
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h2>Livrez votre travail :</h2>
+
+            <div class="ui segment">
+
+                <div class="ui input fluid focus">
+                    <input type="text" id="livraison" placeholder="URL de votre travail...">
+                </div>
+                <button class="ui violet fluid button" onclick="livraison()">Livrer un travail</button>
+
+                <h2>Voici le hash de la livraison :</h2>
+                <div id="hash"></div>
+                
+            </div>
+
+        </div>
+
+        
+
+
+        <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="utf-8" type="text/javascript"></script>
+
+        <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+        
+        <script src="./application.js" charset="utf-8" type="text/javascript"></script>
+
+        <script src="./data.js"></script>
+
+    </body>
+
+</html>
